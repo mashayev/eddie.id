@@ -13,7 +13,7 @@ title = 'My Personal Website'
 
     [params.theme]
         # Available themes are 'light', 'dark', 'ocean', and 'pinkish'
-        mainTheme = "ocean"
+        mainTheme = "dark"
         showAttribute = true
         singlePage = false
 
