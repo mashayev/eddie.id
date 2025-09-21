@@ -4,7 +4,7 @@
   "description": "Eddie.id personal website.",
   "main": "index.js",
   "scripts": {
-    "build-tw": "npx tailwindcss -i ./assets/main.css -o ./static/css/eddie_id_compiled.css",
+    "build-tw": "npx tailwindcss -i ./assets/main.css -o ./static/css/eddie_id_compiled.css --content './layouts/**/*.html'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "scriptComments": {

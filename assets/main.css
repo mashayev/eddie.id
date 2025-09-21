@@ -1,7 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@tailwind variants;
 
 @layer components {
   .nav {
@@ -38,8 +37,9 @@
   }
   
   .glass-card:hover {
-    @apply shadow-3xl transform -translate-y-1;
+    @apply shadow-2xl transform -translate-y-1;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.25);
   }
   
   /* Enhanced Links */
