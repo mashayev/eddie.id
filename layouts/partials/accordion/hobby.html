@@ -1,5 +1,18 @@
-<ul class="pl-0">
-  {{ range.Site.Params.hobby.list }}
-  <li class="list-unstyled mb-2">{{ .hobby }}</li>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+  {{ range $index, $hobby := .Site.Params.hobby.list }}
+  <div class="hobby-item glass-card p-4 text-center hover:scale-105 transition-all duration-300 fade-in" style="animation-delay: {{ mul $index 0.1 }}s;">
+    <div class="mb-3">
+      {{ if eq $hobby.hobby "Gym" }}
+        <i class="fas fa-dumbbell text-3xl text-red-500 dark:text-red-400"></i>
+      {{ else if eq $hobby.hobby "Coffee" }}
+        <i class="fas fa-coffee text-3xl text-amber-600 dark:text-amber-400"></i>
+      {{ else if eq $hobby.hobby "Gaming" }}
+        <i class="fas fa-gamepad text-3xl text-green-500 dark:text-green-400"></i>
+      {{ else }}
+        <i class="fas fa-heart text-3xl text-pink-500 dark:text-pink-400"></i>
+      {{ end }}
+    </div>
+    <h4 class="text-lg font-semibold text-gray-800 dark:text-gray-200">{{ .hobby }}</h4>
+  </div>
   {{ end }}
-</ul>
+</div>

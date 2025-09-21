@@ -3,12 +3,11 @@ const theme = require("tailwindcss/defaultTheme");
 module.exports = {
   important: true,
   content: [
-    "content/**/*.md",
-    "layouts/**/*.html",
-    "./themes/**/layouts/**/*.html",
-    "./content/**/layouts/**/*.html",
     "./layouts/**/*.html",
-    "./content/**/*.html",
+    "./content/**/*.md",
+    "./assets/**/*.css",
+    "./static/**/*.js",
+    "./public/**/*.html",
   ],
   darkMode: "class", // 'media' or 'class'
   theme: {
@@ -18,6 +17,30 @@ module.exports = {
         darker: theme(`colors.stone.800`),
         dark: theme(`colors.stone.700`),
       }),
+      boxShadow: {
+        '3xl': '0 35px 60px -12px rgba(0, 0, 0, 0.25)',
+        'glow': '0 0 20px rgba(59, 130, 246, 0.3)',
+        'glow-purple': '0 0 20px rgba(147, 51, 234, 0.3)',
+      },
+      animation: {
+        'fade-in': 'fadeIn 0.6s ease-out',
+        'slide-up': 'slideUp 0.6s ease-out',
+        'bounce-subtle': 'bounceSubtle 2s infinite',
+      },
+      keyframes: {
+        fadeIn: {
+          '0%': { opacity: '0', transform: 'translateY(20px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        slideUp: {
+          '0%': { opacity: '0', transform: 'translateY(40px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        bounceSubtle: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-5px)' },
+        },
+      },
       typography: (theme) => ({
         DEFAULT: {
           css: {

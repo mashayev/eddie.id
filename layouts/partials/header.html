@@ -1,29 +1,11 @@
-<header
-  class="nav flex flex-row row p-2 mb-6 w-full border-b border-gray-300 dark:border-gray-700 justify-between"
->
+<header class="nav flex flex-row items-center justify-between p-6 mb-8 glass-card fade-in">
   <div>
-    <a class="mr-4 no-underline p-2 rounded hover:bg-gray-200 dark:hover:bg-gray-800" href="{{ .Site.BaseURL }}">Home</a>    
+    <a class="inline-flex items-center no-underline px-4 py-2 rounded-lg bg-white/20 dark:bg-gray-800/20 backdrop-blur-sm border border-gray-200/30 dark:border-gray-700/30 hover:scale-105 hover:shadow-lg transition-all duration-300 font-semibold" href="{{ .Site.BaseURL }}">
+      <i class="fas fa-home mr-2 text-blue-600 dark:text-yellow-400"></i>
+      Home
+    </a>    
   </div>
   
-  <i
-    class="fas fa-sun theme-toggle text-blue-500 hover:text-blue-700 dark:text-yellow-300 dark:hover:text-yellow-500 cursor-pointer text-lg mr-9 sm:mr-0"
-    onclick="lightDark(this)"
-  ></i>
+  <!-- Theme Toggle -->
+  {{ partial "toggleTheme" . }}
 </header>
-
-<script>
-  const lightDark = (el) => {
-    let html = document.querySelector("html");
-    if (html.classList.contains("dark")) {
-      html.classList.remove("dark");
-      el.classList.add("fa-moon");
-      el.classList.remove("fa-sun");
-      window.localStorage.setItem("theme", "light");
-    } else {
-      html.classList.add("dark");
-      el.classList.add("fa-sun");
-      el.classList.remove("fa-moon");
-      window.localStorage.setItem("theme", "dark");
-    }
-  };
-</script>

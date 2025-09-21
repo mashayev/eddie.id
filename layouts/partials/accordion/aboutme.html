@@ -1,3 +1,27 @@
-<p class="markdownify">
-  {{ .Site.Params.aboutme.description | markdownify }}
-</p>
+<div class="space-y-4">
+  <div class="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 p-6 rounded-lg border border-blue-200/30 dark:border-blue-700/30">
+    <p class="text-gray-700 dark:text-gray-300 leading-relaxed text-lg">
+      {{ .Site.Params.aboutme.description | markdownify }}
+    </p>
+  </div>
+  
+  <!-- Quick Stats -->
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
+    <div class="text-center p-4 bg-white/50 dark:bg-gray-800/50 rounded-lg backdrop-blur-sm border border-gray-200/30 dark:border-gray-700/30">
+      <div class="text-2xl font-bold text-blue-600 dark:text-yellow-400">10+</div>
+      <div class="text-sm text-gray-600 dark:text-gray-400">Years Experience</div>
+    </div>
+    <div class="text-center p-4 bg-white/50 dark:bg-gray-800/50 rounded-lg backdrop-blur-sm border border-gray-200/30 dark:border-gray-700/30">
+      <div class="text-2xl font-bold text-blue-600 dark:text-yellow-400">AWS</div>
+      <div class="text-sm text-gray-600 dark:text-gray-400">Cloud Expert</div>
+    </div>
+    <div class="text-center p-4 bg-white/50 dark:bg-gray-800/50 rounded-lg backdrop-blur-sm border border-gray-200/30 dark:border-gray-700/30">
+      <div class="text-2xl font-bold text-blue-600 dark:text-yellow-400">K8s</div>
+      <div class="text-sm text-gray-600 dark:text-gray-400">Orchestration</div>
+    </div>
+    <div class="text-center p-4 bg-white/50 dark:bg-gray-800/50 rounded-lg backdrop-blur-sm border border-gray-200/30 dark:border-gray-700/30">
+      <div class="text-2xl font-bold text-blue-600 dark:text-yellow-400">CI/CD</div>
+      <div class="text-sm text-gray-600 dark:text-gray-400">Automation</div>
+    </div>
+  </div>
+</div>
