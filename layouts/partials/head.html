@@ -23,18 +23,17 @@
   
 
   <script>
-    let html = document.querySelector("html");
-    let theme = window.localStorage.getItem("theme");
-    if (theme) {
-      theme === "dark"
-        ? html.classList.add("dark")
-        : html.classList.remove("dark");
-    } else if (html.classList.contains("dark")) {
-      window.localStorage.setItem("theme", "dark");
-    } else {
-      html.classList.remove("dark");
-      window.localStorage.setItem("theme", "light");
-    }
+    (function() {
+      const html = document.documentElement;
+      const savedTheme = localStorage.getItem('theme');
+      
+      if (savedTheme) {
+        html.classList.toggle('dark', savedTheme === 'dark');
+      } else {
+        html.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+      }
+    })();
 
     window.onload = () => {
       let defaultActivePanel = document.querySelector(".accordion.active");
