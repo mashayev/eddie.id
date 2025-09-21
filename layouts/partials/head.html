@@ -1,5 +1,12 @@
 <head>
   {{ partial "meta" . }}
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="{{ `favicon.ico` | relURL }}">
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ `apple-touch-icon.png` | relURL }}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ `images/profile-new.jpg` | relURL }}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{{ `images/profile-new.jpg` | relURL }}">
+  
   <link
     rel="stylesheet"
     href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"
@@ -23,18 +30,17 @@
   
 
   <script>
-    let html = document.querySelector("html");
-    let theme = window.localStorage.getItem("theme");
-    if (theme) {
-      theme === "dark"
-        ? html.classList.add("dark")
-        : html.classList.remove("dark");
-    } else if (html.classList.contains("dark")) {
-      window.localStorage.setItem("theme", "dark");
-    } else {
-      html.classList.remove("dark");
-      window.localStorage.setItem("theme", "light");
-    }
+    (function() {
+      const html = document.documentElement;
+      const savedTheme = localStorage.getItem('theme');
+      
+      if (savedTheme) {
+        html.classList.toggle('dark', savedTheme === 'dark');
+      } else {
+        html.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+      }
+    })();
 
     window.onload = () => {
       let defaultActivePanel = document.querySelector(".accordion.active");
