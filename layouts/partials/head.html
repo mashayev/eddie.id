@@ -23,7 +23,6 @@
   
 
   <script>
-    // Initialize theme on page load
     let html = document.querySelector("html");
     let theme = window.localStorage.getItem("theme");
     if (theme) {
@@ -37,7 +36,6 @@
       window.localStorage.setItem("theme", "light");
     }
 
-    // Initialize accordion on page load
     window.onload = () => {
       let defaultActivePanel = document.querySelector(".accordion.active");
       if (defaultActivePanel) {
@@ -46,7 +44,6 @@
       }
     };
 
-    // Handle window resize for accordion
     window.onresize = () => {
       let defaultActivePanel = document.querySelector(".accordion.active");
       if (defaultActivePanel) {
@@ -56,30 +53,25 @@
     };
   </script>
 
-  <!-- Add these meta tags for better SEO -->
   <meta name="description" content="{{ .Site.Params.description }}">
   <meta name="author" content="{{ .Site.Params.author }}">
   <meta name="keywords" content="DevOps, Software Engineer, AWS, Kubernetes, Terraform, Ansible, Python">
 
-  <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="{{ .Permalink }}">
   <meta property="og:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}">
   <meta property="og:description" content="{{ .Site.Params.description }}">
   <meta property="og:image" content="{{ .Site.BaseURL }}images/profile-new.jpg">
 
-  <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image">
   <meta property="twitter:url" content="{{ .Permalink }}">
   <meta property="twitter:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}">
   <meta property="twitter:description" content="{{ .Site.Params.description }}">
   <meta property="twitter:image" content="{{ .Site.BaseURL }}images/profile-new.jpg">
 
-  <!-- Preload critical fonts -->
   <link rel="preload" href="/fonts/font-awesome.woff2" as="font" type="font/woff2" crossorigin>
 
   {{ if .Site.Params.googleAnalytics.id }}
-  <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id={{ .Site.Params.googleAnalytics.id }}"></script>
   <script>
     window.dataLayer = window.dataLayer || [];

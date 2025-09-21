@@ -567,8 +567,6 @@ video {
   color: rgb(29 78 216 / var(--tw-text-opacity));
 }
 
-/* Enhanced Panel Animations */
-
 .panel {
   max-height: 0;
   transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease-out;
@@ -579,8 +577,6 @@ video {
 .panel.active {
   opacity: 1;
 }
-
-/* Modern Accordion Styling */
 
 h2.accordion {
   background-image: linear-gradient(to right, var(--tw-gradient-stops));
@@ -634,8 +630,6 @@ h2.accordion {
   }
 }
 
-/* Modern Glass Card Effect */
-
 .glass-card {
   border-radius: 1rem;
   border-width: 1px;
@@ -665,8 +659,6 @@ h2.accordion {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.25);
 }
-
-/* Enhanced Links */
 
 a {
   --tw-text-opacity: 1;
@@ -738,8 +730,6 @@ h5 {
   line-height: 1.75rem;
 }
 
-/* Enhanced Body Styling with Gradient Background */
-
 body {
   font-size: 1rem;
   line-height: 1.5rem;
@@ -765,9 +755,8 @@ body.dark {
 html {
   touch-action: manipulation;
   scroll-behavior: smooth;
+  scroll-padding-top: 100px;
 }
-
-/* Typing Animation */
 
 .typing-animation {
   overflow: hidden;
@@ -796,8 +785,6 @@ html {
   }
 }
 
-/* Fade In Animation */
-
 .fade-in {
   animation: fadeIn 0.6s ease-out;
 }
@@ -813,8 +800,6 @@ html {
     transform: translateY(0);
   }
 }
-
-/* Enhanced Skill Bars */
 
 .skill-bar-container {
   position: relative;
@@ -849,8 +834,6 @@ html {
 .skill-bar.animate {
   transition-delay: 0.2s;
 }
-
-/* Scroll to Top Button */
 
 .scroll-to-top {
   pointer-events: none;
@@ -901,8 +884,6 @@ html {
   opacity: 1;
 }
 
-/* Improved Focus States */
-
 button:focus,
   a:focus {
   outline: 2px solid transparent;
@@ -914,8 +895,6 @@ button:focus,
   --tw-ring-opacity: 0.5;
 }
 
-/* Mobile Optimizations */
-
 @media (max-width: 768px) {
   .glass-card {
     margin-left: 0.5rem;
@@ -925,12 +904,6 @@ button:focus,
   .typing-animation {
     animation: typing 2s steps(20, end), blink-caret 0.75s step-end infinite;
   }
-}
-
-/* Scroll Behavior */
-
-html {
-  scroll-padding-top: 100px;
 }
 
 p {
@@ -953,45 +926,6 @@ blockquote {
   blockquote {
     --tw-bg-opacity: 1;
     background-color: rgb(31 41 55 / var(--tw-bg-opacity));
-  }
-}
-
-.tags,
-  .categories {
-  margin-right: 0.5rem;
-  margin-bottom: 0.5rem;
-  border-radius: 0.25rem;
-  padding: 0.25rem;
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-}
-
-.tags:hover,
-  .categories:hover {
-  --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-  --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-}
-
-.tags {
-  border-width: 1px !important;
-  --tw-border-opacity: 1 !important;
-  border-color: rgb(75 85 99 / var(--tw-border-opacity)) !important;
-  --tw-bg-opacity: 1 !important;
-  background-color: rgb(229 231 235 / var(--tw-bg-opacity)) !important;
-  --tw-text-opacity: 1 !important;
-  color: rgb(31 41 55 / var(--tw-text-opacity)) !important;
-}
-
-.tags:hover {
-  --tw-bg-opacity: 1 !important;
-  background-color: rgb(209 213 219 / var(--tw-bg-opacity)) !important;
-}
-
-@media (prefers-color-scheme: dark) {
-  .tags {
-    --tw-border-opacity: 1 !important;
-    border-color: rgb(243 244 246 / var(--tw-border-opacity)) !important;
   }
 }
 
@@ -1260,10 +1194,6 @@ blockquote {
 
 .resize-none {
   resize: none;
-}
-
-.resize {
-  resize: both;
 }
 
 .grid-cols-1 {

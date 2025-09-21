@@ -31,7 +31,6 @@
   
 
   <script>
-    
     let html = document.querySelector("html");
     let theme = window.localStorage.getItem("theme");
     if (theme) {
@@ -45,7 +44,6 @@
       window.localStorage.setItem("theme", "light");
     }
 
-    
     window.onload = () => {
       let defaultActivePanel = document.querySelector(".accordion.active");
       if (defaultActivePanel) {
@@ -54,7 +52,6 @@
       }
     };
 
-    
     window.onresize = () => {
       let defaultActivePanel = document.querySelector(".accordion.active");
       if (defaultActivePanel) {
@@ -64,26 +61,22 @@
     };
   </script>
 
-  
   <meta name="description" content="Website title">
   <meta name="author" content="Eddie Mashayev">
   <meta name="keywords" content="DevOps, Software Engineer, AWS, Kubernetes, Terraform, Ansible, Python">
 
-  
   <meta property="og:type" content="website">
   <meta property="og:url" content="http://localhost:1313/tags/">
   <meta property="og:title" content="Tags | My Personal Website">
   <meta property="og:description" content="Website title">
   <meta property="og:image" content="http://localhost:1313/images/profile-new.jpg">
 
-  
   <meta property="twitter:card" content="summary_large_image">
   <meta property="twitter:url" content="http://localhost:1313/tags/">
   <meta property="twitter:title" content="Tags | My Personal Website">
   <meta property="twitter:description" content="Website title">
   <meta property="twitter:image" content="http://localhost:1313/images/profile-new.jpg">
 
-  
   <link rel="preload" href="/fonts/font-awesome.woff2" as="font" type="font/woff2" crossorigin>
 
   
