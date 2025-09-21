@@ -1,12 +1,18 @@
-<h1 class="mb-0">{{ .Site.Params.profile.name }}</h1>
-<h2 class="mb-0">{{ .Site.Params.profile.tagline }}</h2>
-<h3 class="mb-4">{{ .Site.Params.profile.location }}</h3>
-<div class="mb-4 flex flex-wrap justify-center">
-  {{ range.Site.Params.social.list }}
-  <div class="mx-2">
-    <a class="text-2xl" href="{{ .url }}">
-      <i class="mt-1 {{ .icon }}"></i>
-    </a>
-  </div>
+<!-- Social Links -->
+<div class="flex justify-center space-x-4 mb-6">
+  {{ range $index, $social := .Site.Params.social.list }}
+  <a href="{{ .url }}" 
+     target="_blank" 
+     rel="noopener noreferrer"
+     class="social-link group relative p-3 bg-white/20 dark:bg-gray-800/20 backdrop-blur-sm rounded-full border border-gray-200/30 dark:border-gray-700/30 hover:scale-110 hover:shadow-glow transition-all duration-300 fade-in"
+     style="animation-delay: {{ mul $index 0.1 }}s;"
+     title="{{ .title }}">
+    <i class="{{ .icon }} text-xl text-gray-700 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-yellow-400 transition-colors duration-200"></i>
+    
+    <!-- Tooltip -->
+    <span class="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-gray-800 dark:bg-gray-200 text-white dark:text-gray-800 text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap">
+      {{ .title }}
+    </span>
+  </a>
   {{ end }}
 </div>

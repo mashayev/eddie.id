@@ -1,10 +1,42 @@
-{{ range.Site.Params.experience.list }}
-<h4 style="text-decoration: underline;">{{ .position }}</h4>
-<p {{if .details }}class="mb-0"{{ end }}>
-  {{ .dates | markdownify }} &middot; {{ if .url }}
-  <a href="{{ .url }}">{{ .company }}</a>
-  {{ else }} {{ .company }} {{ end }}
-</p>
-<p>{{ .details | markdownify }}</p>
-
-{{ end }}
+<div class="space-y-6">
+  {{ range $index, $exp := .Site.Params.experience.list }}
+  <div class="experience-item fade-in border-l-4 border-blue-500 dark:border-yellow-500 pl-6 relative" style="animation-delay: {{ mul $index 0.1 }}s;">
+    <!-- Timeline dot -->
+    <div class="absolute w-4 h-4 bg-blue-500 dark:bg-yellow-500 rounded-full -left-2 top-2 shadow-lg"></div>
+    
+    <div class="bg-white/30 dark:bg-gray-800/30 rounded-lg p-4 backdrop-blur-sm border border-gray-200/30 dark:border-gray-700/30 hover:shadow-lg transition-all duration-300">
+      <h4 class="text-xl font-bold text-gray-800 dark:text-gray-200 mb-2 flex items-center">
+        <i class="fas fa-briefcase text-blue-500 dark:text-yellow-500 mr-2"></i>
+        {{ .position }}
+      </h4>
+      
+      <div class="flex flex-wrap items-center gap-2 mb-3">
+        <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200">
+          <i class="fas fa-calendar-alt mr-1"></i>
+          {{ .dates | markdownify }}
+        </span>
+        
+        {{ if .url }}
+        <a href="{{ .url }}" target="_blank" rel="noopener noreferrer" 
+           class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 hover:bg-green-200 dark:hover:bg-green-800 transition-colors duration-200">
+          <i class="fas fa-building mr-1"></i>
+          {{ .company }}
+          <i class="fas fa-external-link-alt ml-1 text-xs"></i>
+        </a>
+        {{ else }}
+        <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200">
+          <i class="fas fa-building mr-1"></i>
+          {{ .company }}
+        </span>
+        {{ end }}
+      </div>
+      
+      {{ if .details }}
+      <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+        {{ .details | markdownify }}
+      </p>
+      {{ end }}
+    </div>
+  </div>
+  {{ end }}
+</div>

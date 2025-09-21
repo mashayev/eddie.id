@@ -14,13 +14,11 @@
     rel="stylesheet"
     href="//fonts.googleapis.com/css?family=Didact+Gothic%7CRoboto:400%7CRoboto+Mono"
   />
-  <link rel="stylesheet" href="{{ `/css/eddie_id.css` | relURL }}" />
-  
-  {{ if .Site.IsServer }}
-      {{ $styles := resources.Get "main.css" | postCSS (dict "config" "./assets/postcss.config.js") }}
-      <link rel="stylesheet" href="{{ $styles.RelPermalink }}">
+  {{ if eq hugo.Environment "development" }}
+    {{ $styles := resources.Get "main.css" | postCSS (dict "config" "./assets/postcss.config.js") }}
+    <link rel="stylesheet" href="{{ $styles.RelPermalink }}">
   {{ else }}
-      <link rel="stylesheet" href="{{ `/css/eddie_id_compiled.css` | relURL }}" />
+    <link rel="stylesheet" href="{{ `/css/eddie_id_compiled.css` | relURL }}" />
   {{ end }}
   
 
@@ -39,15 +37,6 @@
     }
 
     window.onload = () => {
-      let themeToggle = document.querySelector(".theme-toggle");
-      if (window.localStorage.getItem("theme") === "dark") {
-        themeToggle.classList.remove("bi-moon-fill");
-        themeToggle.classList.add("bi-brightness-high");
-      } else {
-        themeToggle.classList.add("bi-moon-fill");
-        themeToggle.classList.remove("bi-brightness-high");
-      }
-
       let defaultActivePanel = document.querySelector(".accordion.active");
       if (defaultActivePanel) {
         defaultActivePanel.nextElementSibling.style.maxHeight =
@@ -55,15 +44,6 @@
       }
     };
 
-    {{/*  var themeColor = document.querySelector("meta[name=theme-color]");
-    window.onload = () => {
-      themeColor.content = getComputedStyle(document.body)["background-color"];
-      let defaultActivePanel = document.querySelector(".accordion.active");
-      if (defaultActivePanel) {
-        defaultActivePanel.nextElementSibling.style.maxHeight =
-          defaultActivePanel.nextElementSibling.scrollHeight + "px";
-      }
-    };  */}}
     window.onresize = () => {
       let defaultActivePanel = document.querySelector(".accordion.active");
       if (defaultActivePanel) {
@@ -72,4 +52,32 @@
       }
     };
   </script>
+
+  <meta name="description" content="{{ .Site.Params.description }}">
+  <meta name="author" content="{{ .Site.Params.author }}">
+  <meta name="keywords" content="DevOps, Software Engineer, AWS, Kubernetes, Terraform, Ansible, Python">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{{ .Permalink }}">
+  <meta property="og:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}">
+  <meta property="og:description" content="{{ .Site.Params.description }}">
+  <meta property="og:image" content="{{ .Site.BaseURL }}images/profile-new.jpg">
+
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="{{ .Permalink }}">
+  <meta property="twitter:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}">
+  <meta property="twitter:description" content="{{ .Site.Params.description }}">
+  <meta property="twitter:image" content="{{ .Site.BaseURL }}images/profile-new.jpg">
+
+  <link rel="preload" href="/fonts/font-awesome.woff2" as="font" type="font/woff2" crossorigin>
+
+  {{ if .Site.Params.googleAnalytics.id }}
+  <script async src="https://www.googletagmanager.com/gtag/js?id={{ .Site.Params.googleAnalytics.id }}"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', '{{ .Site.Params.googleAnalytics.id }}');
+  </script>
+  {{ end }}
 </head>

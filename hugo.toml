@@ -16,13 +16,15 @@ title = 'My Personal Website'
         mainTheme = "dark"
         showAttribute = true
         singlePage = false
+        # Add a new option for theme toggle
+        enableThemeToggle = true
 
     # Profile section
     [params.profile]
         name = "Eddie Mashayev"
         tagline = "Software Engineer"
-        location = "New York City, NY"
-        photo = "profile.jpg"
+        location = "Miami, FL"
+        photo = "profile-new.jpg"
 
     # Section for links to social websites
     [params.social]
@@ -137,3 +139,40 @@ title = 'My Personal Website'
             hobby = "Coffee"
         [[params.hobby.list]]
             hobby = "Gaming"
+
+    # Add projects section
+    [params.projects]
+        title = "Projects"
+        icon = "fas fa-code-branch"
+
+        [[params.projects.list]]
+            title = "Personal Website"
+            description = "My personal website built with Hugo and Tailwind CSS"
+            technologies = ["Hugo", "Tailwind CSS", "JavaScript"]
+            url = "https://github.com/mashayev/eddie.id"
+        
+        [[params.projects.list]]
+            title = "DevOps Automation Tool"
+            description = "A tool for automating common DevOps tasks"
+            technologies = ["Python", "Docker", "AWS"]
+            url = "https://github.com/mashayev/devops-tool"
+
+    # Add contact section
+    [params.contact]
+        title = "Contact Me"
+        icon = "fas fa-envelope"
+        email = "eddie@eddie.id"
+
+    # Update showInAccordion to include new sections
+    [[params.showInAccordion]]
+        item = "projects"
+    [[params.showInAccordion]]
+        item = "contact"
+
+    # [params.googleAnalytics]
+    #     id = "G-XXXXXXXXXX"  # Add your actual Google Analytics ID here
+
+    [params.blog]
+        enabled = true
+        title = "Blog"
+        description = "My thoughts on DevOps, software engineering, and technology"

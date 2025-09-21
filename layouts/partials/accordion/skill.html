@@ -1,16 +1,55 @@
-<script>
-  let skillPanel = document.querySelector("#skill-panel")
-    .previousElementSibling;
-  skillPanel.addEventListener("click", function() {
-    let skillBars = document.querySelectorAll("#skill-percent");
-    skillBars.forEach(elem => {
-      elem.style.width = elem.classList[0];
-    });
-  });
-</script>
-{{ range.Site.Params.skill.list }}
-<code>{{ .skill }}</code>
-<div class="w-100 mt-1 mb-3 border border-black dark:border-gray-300 rounded" style="height: 1.25rem;">
-  <div id="skill-percent" class="{{ .skillrating }}% bg-blue-500 dark:bg-yellow-700 h-full rounded" style="width: 0; transition: all 0.5s;"></div>
+<div class="space-y-6">
+  {{ range $index, $skill := .Site.Params.skill.list }}
+  <div class="skill-item fade-in" style="animation-delay: {{ mul $index 0.1 }}s;">
+    <div class="flex justify-between items-center mb-2">
+      <span class="text-sm font-semibold text-gray-700 dark:text-gray-300 flex items-center">
+        <i class="fas fa-code text-blue-500 mr-2"></i>
+        {{ .skill }}
+      </span>
+      <span class="text-sm font-bold text-blue-600 dark:text-yellow-400 skill-percentage">
+        {{ .skillrating }}%
+      </span>
+    </div>
+    <div class="skill-bar-container">
+      <div 
+        class="skill-bar" 
+        data-skill="{{ .skillrating }}"
+        style="width: 0%;"
+      ></div>
+    </div>
+  </div>
+  {{ end }}
 </div>
-{{ end }}
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const skillSection = document.querySelector("#skill-panel");
+  if (skillSection) {
+    const skillHeader = skillSection.previousElementSibling;
+    
+    skillHeader.addEventListener("click", function() {
+      setTimeout(() => {
+        animateSkillBars();
+      }, 300);
+    });
+    
+    // If skills section is initially expanded, animate immediately
+    if (skillHeader.classList.contains('active')) {
+      setTimeout(() => {
+        animateSkillBars();
+      }, 500);
+    }
+  }
+  
+  function animateSkillBars() {
+    const skillBars = document.querySelectorAll('.skill-bar');
+    skillBars.forEach((bar, index) => {
+      const skillLevel = bar.getAttribute('data-skill');
+      setTimeout(() => {
+        bar.style.width = skillLevel + '%';
+        bar.classList.add('animate');
+      }, index * 100);
+    });
+  }
+});
+</script>

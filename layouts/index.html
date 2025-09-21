@@ -1,42 +1,104 @@
 {{ define "main" }}
-<div class="grid grid-cols-1 md:grid-cols-5 gap-2 sm py-2">
-  <div class="col-span-2">
-    <div class="bg-gray-300 dark:bg-darker rounded drop-shadow-md p-2">
-      <div class="flex flex-col justify-center">
-        <div class="">{{ partial "profilePhoto" . }}</div>
-        <div class="p-2 text-center">
-          {{ partial "social" . }} {{ partial "footer" . }}
+<div class="min-h-screen py-8">
+  <div class="container mx-auto px-4">
+    <div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
+      <!-- Profile Card -->
+      <div class="lg:col-span-2">
+        <div class="glass-card p-8 sticky top-8 fade-in">
+          <div class="flex flex-col items-center">
+            <div class="mb-6">{{ partial "profilePhoto" . }}</div>
+            <div class="text-center space-y-4">
+              {{ partial "social" . }} 
+              {{ partial "footer" . }}
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-  <div class="col-span-3 relative">
-    {{ range .Site.Params.showInAccordion }}
-    <div class="px-2">
-      <h2 class="my-0 accordion {{- if .expand }} active {{- end }}">
+      <!-- Content Area -->
+      <div class="lg:col-span-3 space-y-6">
+        {{ range $index, $section := .Site.Params.showInAccordion }}
         {{ $current := index $.Site.Params .item }}
-        <p
-          class="hover:bg-gray-300 rounded dark:hover:bg-darker m-0 p-2"
-          onclick="expandAccordion(this)"
-          style="cursor: pointer"
-        >
-          <i class="{{ $current.icon }}"></i>
-          {{ $current.title -}}
-        </p>
-      </h2>
+        <div class="glass-card overflow-hidden fade-in" style="animation-delay: {{ mul $index 0.1 }}s;">
+          <div class="accordion-header {{- if .expand }} active {{- end }}">
+            <h2 class="my-0 accordion">
+              <button
+                class="w-full text-left p-6 flex items-center justify-between group focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 rounded-lg"
+                onclick="expandAccordion(this)"
+                aria-expanded="{{ if .expand }}true{{ else }}false{{ end }}"
+              >
+                <div class="flex items-center space-x-3">
+                  <i class="{{ $current.icon }} text-2xl group-hover:scale-110 transition-transform duration-200"></i>
+                  <span class="text-xl font-semibold">{{ $current.title }}</span>
+                </div>
+                <i class="fas fa-chevron-down transform transition-transform duration-300 group-hover:text-blue-600 dark:group-hover:text-yellow-400" 
+                   data-accordion-icon></i>
+              </button>
+            </h2>
+          </div>
 
-      <div
-        class="panel overflow-hidden px-2 ml-2"
-        {{if $current.panelid}}
-        id="{{ $current.panelid }}"
+          <div
+            class="panel bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm"
+            {{if $current.panelid}}
+            id="{{ $current.panelid }}"
+            {{ end }}
+          >
+            <div class="p-6 pt-0">
+              {{ partial (print "accordion/" .item) $ }}
+            </div>
+          </div>
+        </div>
         {{ end }}
-      >
-        <div class="">{{ partial (print "accordion/" .item) $ }}</div>
+
+        <script src="{{ `js/accordion.js` | relURL }}"></script>
       </div>
     </div>
-    {{ end }}
-
-    <script src="{{ `js/accordion.js` | relURL }}"></script>
   </div>
+  
+  <!-- Scroll to Top Button -->
+  <button id="scroll-to-top" class="scroll-to-top" title="Scroll to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
 </div>
+
+<script>
+// Scroll to Top Functionality
+document.addEventListener('DOMContentLoaded', function() {
+  const scrollToTopBtn = document.getElementById('scroll-to-top');
+  
+  window.addEventListener('scroll', function() {
+    if (window.pageYOffset > 300) {
+      scrollToTopBtn.classList.add('show');
+    } else {
+      scrollToTopBtn.classList.remove('show');
+    }
+  });
+  
+  scrollToTopBtn.addEventListener('click', function() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+  
+  // Add intersection observer for fade-in animations
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+  
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, observerOptions);
+  
+  // Observe all cards for animation
+  document.querySelectorAll('.glass-card').forEach(card => {
+    observer.observe(card);
+  });
+});
+</script>
 {{ end }}
