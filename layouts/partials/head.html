@@ -37,8 +37,8 @@
       if (savedTheme) {
         html.classList.toggle('dark', savedTheme === 'dark');
       } else {
-        html.classList.remove('dark');
-        localStorage.setItem('theme', 'light');
+        html.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
       }
     })();
 
